@@ -10,18 +10,21 @@ import prodotto.Prodotto;
  * @author danilo.telch
  */
 public class Supermercato {
-     private String nome;
+
+    private String nome;
     private String indirizzo;
     private Prodotto[] prodotti;
+    private int diml;
 
     public Supermercato(String nome, String indirizzo, Prodotto[] prodotti) {
         this.nome = nome;
         this.indirizzo  = indirizzo;
-        this.prodotti = copia(prodotti);
+        this.prodotti = copia(prodotti, prodotti.length);
+        this.diml = prodotti.length;
     }
 
-    private Prodotto[] copia(Prodotto[] prodotti) {
-        Prodotto[] temp = new Prodotto[prodotti.length];
+    private Prodotto[] copia(Prodotto[] prodotti, int lungFisica    ) {
+        Prodotto[] temp = new Prodotto[lungFisica];
         for (int i = 0; i < prodotti.length; i++) {
             temp[i] = prodotti[i];
         }
@@ -49,7 +52,7 @@ public class Supermercato {
 
     public double valoreMerce() {
         double somma = prodotti[0].getPrezzo();
-        for (int i = 1; i < prodotti.length; i++) 
+        for (int i = 1; i < prodotti.length; i++)
             somma += prodotti[i].getPrezzo();
         return somma;
     }
@@ -73,6 +76,19 @@ public class Supermercato {
             }
         }
         return prodottiSopraMedia;
+    }
+   
+    public void addProd(Prodotto pAdd){
+        if(diml == this.prodotti.length)
+            prodotti = copia(prodotti, prodotti.length + 10);
+       
+        prodotti[diml] = pAdd;
+        diml++;
+    }
+   
+    public void addProd(double prezzo, double iva, double peso, double tara, String descrizione, String codiceBarre){
+        Prodotto p = new Prodotto(prezzo, iva, peso, tara, descrizione, codiceBarre);
+        addProd(p);
     }
 
 }
