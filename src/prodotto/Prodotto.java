@@ -24,6 +24,15 @@ public class Prodotto {
         this.descrizione = descrizione;
         this.codiceBarre = codiceBarre;
     }
+    
+    public Prodotto(Prodotto p){
+        this.prezzo = p.prezzo;
+        this.iva = p.iva;
+        this.peso = p.peso;
+        this.tara = p.tara;
+        this.descrizione = p.descrizione;
+        this.codiceBarre = p.codiceBarre;         
+    }
 
     public String getDescrizione() {
         return descrizione;
