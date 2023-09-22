@@ -30,12 +30,18 @@ public class SupermercatoMain {
             p[i] = new Prodotto(prezzi[i], 4, pesi[i], tare[i], descrizioni[i], codici[i]);
         }
 
-        Supermercato s = new Supermercato("Coop", "Viale IV Novembre 53", p);
-
+        Supermercato s = new Supermercato("Coop", "Viale IV Novembre 53", 5);
+        
+        for (int i = 0; i < p.length; i++){
+            s.addProd(p[i]);
+        }
+        
         System.out.println(s.prezzoAlto());
         System.out.println(s.pesoMinore());
         System.out.println(s.valoreMerce());
         System.out.println(s.sopraValoreMedio());
+        
+        
     }   
 
     }
