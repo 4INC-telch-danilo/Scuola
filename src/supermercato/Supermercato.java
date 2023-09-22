@@ -1,4 +1,3 @@
-
 package supermercato;
 import prodotto.Prodotto;
 
@@ -13,19 +12,11 @@ public class Supermercato {
     private Prodotto[] prodotti;
     private int diml;
 
-    public Supermercato(String nome, String indirizzo, Prodotto[] prodotti) {
+    public Supermercato(String nome, String indirizzo, int prodotti) {
         this.nome = nome;
         this.indirizzo  = indirizzo;
-        this.prodotti = copia(prodotti, prodotti.length);
-        this.diml = prodotti.length;
-    }
-
-    private Prodotto[] copia(Prodotto[] prodotti, int lungFisica    ) {
-        Prodotto[] temp = new Prodotto[lungFisica];
-        for (int i = 0; i < prodotti.length; i++) {
-            temp[i] = prodotti[i];
-        }
-        return temp;
+        this.prodotti = new Prodotto[prodotti];
+        this.diml = 0;
     }
 
     public String getNome() {
@@ -39,7 +30,7 @@ public class Supermercato {
 
     public String prezzoAlto() {
         int prezzoAlto = 0;
-        for (int i = 1; i < prodotti.length; i++){
+        for (int i = 1; i < diml; i++){
             if (prodotti[prezzoAlto].prezzoIvato() < prodotti[i].prezzoIvato()){
                 prezzoAlto = i;
             }
@@ -49,14 +40,14 @@ public class Supermercato {
 
     public double valoreMerce() {
         double somma = prodotti[0].getPrezzo();
-        for (int i = 1; i < prodotti.length; i++)
+        for (int i = 1; i < diml; i++)
             somma += prodotti[i].getPrezzo();
         return somma;
     }
 
     public String pesoMinore() {
         int pesoMinore = 0;
-        for (int i = 1; i < prodotti.length; i++){
+        for (int i = 1; i < diml; i++){
             if (prodotti[pesoMinore].prezzoIvato() > prodotti[i].prezzoIvato()){
                 pesoMinore = i;
             }
@@ -65,9 +56,9 @@ public class Supermercato {
     }
 
     public String sopraValoreMedio() {
-        double valoreMedio = valoreMerce()/prodotti.length;
+        double valoreMedio = valoreMerce()/diml;
         String prodottiSopraMedia = "";
-        for (int i = 0; i < prodotti.length; i++) {
+        for (int i = 0; i < diml; i++) {
             if (prodotti[i].getPrezzo() > valoreMedio) {
                 prodottiSopraMedia += prodotti[i].getDescrizione() + "\n";
             }
@@ -76,9 +67,8 @@ public class Supermercato {
     }
    
     public void addProd(Prodotto pAdd){
-        if(diml == this.prodotti.length)
-            prodotti = copia(prodotti, prodotti.length + 10);
-       
+        if(diml >= this.prodotti.length)
+            prodotti = ingrandisciArrayConCopia((prodotti.length*20)/100);    
         prodotti[diml] = pAdd;
         diml++;
     }
@@ -87,5 +77,21 @@ public class Supermercato {
         Prodotto p = new Prodotto(prezzo, iva, peso, tara, descrizione, codiceBarre);
         addProd(p);
     }
-
+    
+    private Prodotto[] copia(Prodotto[] prodotti) {
+        Prodotto[] temp = new Prodotto[prodotti.length];
+        for (int i = 0; i < prodotti.length; i++) {
+            temp[i] = prodotti[i];
+        }
+        return temp;
+    }
+    
+    private Prodotto[] ingrandisciArrayConCopia(int lungFisica) {
+        Prodotto[] temp = new Prodotto[prodotti.length+lungFisica];
+        for (int i = 0; i < prodotti.length; i++) {
+            temp[i] = prodotti[i];
+        }
+        return temp;
+    }
+    
 }
