@@ -68,7 +68,7 @@ public class Supermercato {
    
     public void addProd(Prodotto pAdd){
         if(diml >= this.prodotti.length)
-            prodotti = ingrandisciArrayConCopia((prodotti.length*20)/100);    
+            prodotti = resize((prodotti.length*20)/100);    
         prodotti[diml] = pAdd;
         diml++;
     }
@@ -86,7 +86,7 @@ public class Supermercato {
         return temp;
     }
     
-    private Prodotto[] ingrandisciArrayConCopia(int lungFisica) {
+    private Prodotto[] resize(int lungFisica) {
         Prodotto[] temp = new Prodotto[prodotti.length+lungFisica];
         for (int i = 0; i < prodotti.length; i++) {
             temp[i] = prodotti[i];
