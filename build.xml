@@ -10,6 +10,14 @@
 <project name="telch" default="default" basedir=".">
     <description>Builds, tests, and runs the project telch.</description>
     <import file="nbproject/build-impl.xml"/>
+
+    <!-- https://mvnrepository.com/artifact/org.eclipse.jgit/org.eclipse.jgit -->
+<dependency>
+    <groupId>org.eclipse.jgit</groupId>
+    <artifactId>org.eclipse.jgit</artifactId>
+    <version>5.12.0.202106070339-r</version>
+</dependency>
+
     <!--
 
     There exist several targets which are by default empty and which can be 
