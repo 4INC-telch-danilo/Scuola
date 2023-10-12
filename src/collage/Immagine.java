@@ -21,24 +21,12 @@ public class Immagine {
         return altezza;
     }
 
-    public void setAltezza(int altezza) {
-        this.altezza = altezza;
-    }
-
     public int getBase() {
         return base;
     }
 
-    public void setBase(int base) {
-        this.base = base;
-    }
-
     public boolean isColore() {
         return colore;
-    }
-
-    public void setColore(boolean colore) {
-        this.colore = colore;
     }
     
     public int numeroPixel(){
@@ -46,15 +34,13 @@ public class Immagine {
     }
     
     public String confrontaDimensioni(Immagine nuova){
-        String t = "";
-        int dim1 = base*altezza;
-        int dim2 = nuova.getBase()*nuova.getAltezza();
+        String t = "L'immagine e' piu' piccola";
+        int dim1 = numeroPixel();
+        int dim2 = nuova.numeroPixel();
         if(dim1 > dim2){
             t = "L'immagine e' piu' grande";
         }else if(dim1 == dim2){
             t = "Le due immagini sono uguali";
-        }else{
-            t = "L'immagine e' piu' piccola";
         }
         return t;
     }
@@ -66,14 +52,14 @@ public class Immagine {
     }
     
     public String cambiaColore(boolean aColore){
-        colore = aColore;
+        this.colore = aColore;
         return "Colore cambiato";
     }
     
-   public String stampa(){
-       String t = "";
-       t = "base: " + base + "\naltezza: " + altezza + "\ncolorata: " + colore + "\n";
-       return t;
-   } 
+    public String stampa(){
+        String t = "";
+        t = "base: " + base + "\naltezza: " + altezza + "\ncolorata: " + colore + "\n";
+        return t;
+    } 
     
 }
