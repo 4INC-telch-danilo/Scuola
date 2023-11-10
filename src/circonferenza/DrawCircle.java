@@ -24,6 +24,13 @@ public class DrawCircle extends JFrame {
         int x = raggio + 200;
         int y = raggio + 200;
         setSize(x, y);
+        JOptionPane.showMessageDialog(null, "Sto disegnando");
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            System.out.println("ciao");
+        }
+        
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -37,7 +44,7 @@ public class DrawCircle extends JFrame {
 
     public static void main(String[] args) {
 
-       new DrawCircle(-2, 2, 2, -2);
+       new DrawCircle(10, 0, 0,0);
 
     }
     

@@ -1,6 +1,7 @@
 package collage;
 
 public class Immagine {
+    
     private int base;
     private int altezza;
     private boolean colore;
@@ -29,14 +30,14 @@ public class Immagine {
         return colore;
     }
     
-    public int numeroPixel(){
+    public int dimensioni(){
         return base * altezza;
     }
     
     public String confrontaDimensioni(Immagine nuova){
         String t = "L'immagine e' piu' piccola";
-        int dim1 = numeroPixel();
-        int dim2 = nuova.numeroPixel();
+        int dim1 = dimensioni();
+        int dim2 = nuova.dimensioni();
         if(dim1 > dim2){
             t = "L'immagine e' piu' grande";
         }else if(dim1 == dim2){
@@ -61,5 +62,4 @@ public class Immagine {
         t = "base: " + base + "\naltezza: " + altezza + "\ncolorata: " + colore + "\n";
         return t;
     } 
-    
 }
