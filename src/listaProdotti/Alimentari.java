@@ -6,6 +6,7 @@ package listaProdotti;
 
 import prodotto.Prodotto;
 import data.DataCompleta;
+
 /**
  *
  * @author danilo.telch
@@ -19,12 +20,11 @@ public class Alimentari extends Prodotto{
     }
     
     public final void setDataScadenza(DataCompleta dataScadenza){
-        this.dataScadenza = new DataCompleta(dataScadenza);
+        this.dataScadenza = dataScadenza;
     }
         
-    @Override
-    public DataCompleta dataScadenza() {
-        return new DataCompleta(dataScadenza);
+    public DataCompleta getDataScadenza() {
+        return dataScadenza;
     }
     
     @Override

@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package data;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 /**
  *
@@ -152,13 +154,9 @@ public class DataCompleta {
         return formattazione(giorno, mese, anno);
     }
     
-    public int diffData(DataCompleta d){
-        int giorno = this.giorno;
-        int i = 0;
-        while (giorno > d.getGiorno()){
-            giorno--;
-            i++;
-        }        
-        return i;
+    public long diffData(DataCompleta d){
+        LocalDate data1 = LocalDate.of(this.anno, this.mese, this.giorno);
+        LocalDate data2 = LocalDate.of(d.anno, d.mese, d.giorno);
+        return Math.abs(ChronoUnit.DAYS.between(data1, data2));
     }
 }

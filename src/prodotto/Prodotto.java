@@ -67,13 +67,5 @@ public class Prodotto {
         }
         return Integer.parseInt(String.valueOf(codiceBarre.charAt(12))) == somm%10;
     }
-    
-    public boolean contienePlastica() {
-        return false;
-    }
-    
-    public DataCompleta dataScadenza() {
-        return null;
-    }
-    
+       
 }

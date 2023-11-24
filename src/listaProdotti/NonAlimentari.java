@@ -21,7 +21,6 @@ public class NonAlimentari extends Prodotto{
         this.contienePlastica=contienePlastica;
     }
     
-    @Override
     public boolean contienePlastica() {
         return contienePlastica;
     }
