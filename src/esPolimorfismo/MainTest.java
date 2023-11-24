@@ -3,16 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package esPolimorfismo;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
-/**
+/**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
  *
  * @author danilo.telch
  */
 public class MainTest {
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
         Padre p = new Padre();
         Figlio f = new Figlio();
