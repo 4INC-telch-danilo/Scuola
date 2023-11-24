@@ -4,12 +4,13 @@
  */
 package prodotto;
 
+import data.DataCompleta;
 /**
  *
  * @author danilo.telch
  */
 public class Prodotto {
-    private double prezzo;
+     private double prezzo;
      private double iva;
      private double peso;
      private double tara;
@@ -43,8 +44,8 @@ public class Prodotto {
     }
     
     
-    public String stampa(){
-        return "Prezzo: " + prezzo + "\nIva: " + iva + "\nPeso: " + peso + "\nTara: " + tara + "\nDescrizione: " + descrizione + "\nCodice a barre: " + codiceBarre;
+    public String toSting(){
+        return "Prezzo: " + prezzo + "\nIva: " + iva + "\nPeso: " + peso + "\nTara: " + tara + "\nDescrizione: " + descrizione + "\nCodice a barre: " + codiceBarre +"\n";
     }
     
     public double prezzoIvato(){
@@ -65,6 +66,14 @@ public class Prodotto {
             }
         }
         return Integer.parseInt(String.valueOf(codiceBarre.charAt(12))) == somm%10;
+    }
+    
+    public boolean contienePlastica() {
+        return false;
+    }
+    
+    public DataCompleta dataScadenza() {
+        return null;
     }
     
 }

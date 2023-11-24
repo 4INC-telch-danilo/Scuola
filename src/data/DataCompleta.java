@@ -38,6 +38,14 @@ public class DataCompleta {
         if (giorno > 0 && giorno <= giorniMesi[mese - 1])
             this.giorno = giorno;
     }
+    
+    public DataCompleta(DataCompleta d){
+        int[] giorniDeiMesi = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        this.giorniMesi = giorniDeiMesi;
+        this.giorno = d.giorno;
+        this.anno = d.anno;
+        this.mese = d.mese;
+    }
 
     private boolean controlloBisestile(int anno) {
         return (anno % 400 == 0) || ((anno % 4 == 0) && (anno % 100 != 0));
@@ -101,7 +109,8 @@ public class DataCompleta {
         return testo;
     }
 
-    public String stampa() {
+    @Override
+    public String toString() {
         String testo = "";
         testo = "Giorno: " + giorno + "\n"
                 + "Mese: " + mese + "\n"

@@ -69,6 +69,14 @@ public class Orologio {
                 + "\nSecondi: " + secondi;
     }
 
+    public void aggiungiOre(int oreDaAggiungere) {
+        int ore = this.ora + oreDaAggiungere;
+        while (ore > 23) {
+            ore -= 24;
+        }
+        this.ora = ore;
+    }
+
     private void provaConversione(int ora, int minuti, int secondi) throws Exception {
         if (secondi < 0 || ora < 0 || minuti < 0) {
             throw new Exception("I secondi, i minuti e le ore non posso essere minori di 0");
@@ -90,3 +98,4 @@ public class Orologio {
         }
     }
 }
+

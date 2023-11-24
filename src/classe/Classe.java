@@ -1,68 +1,90 @@
-package classe;
+package aggregazione.studente_classe;
+
+import java.util.Arrays;
 
 public class Classe {
-    private Studente capoClasse;
+    private Studente   capoClasse;
     private Studente[] studenti;
 
-    public Classe(Studente capoClasse, Studente[] studenti) throws Exception {
-        this.studenti = new Studente[studenti.length];
-        for (int i = 0; i < studenti.length; i++) {
-            this.studenti[i] = new Studente(studenti[i]);
-        }
+    public Classe(Studente capoClasse, Studente[] studenti) {
         setCapoClasse(capoClasse);
+        setStudenti(studenti);
+    }
+    
+    public Studente getCapoClasse() {        
+        //return capoClasse; //aggregazione lasca
+        
+        //se non ci fosse il costruttore di copia
+        //Studente temp = new Studente(capoClasse.getCognome(), capoClasse.getNome());
+        
+        //utilizzando il costruttore di copia         
+        Studente temp = new Studente(capoClasse); //aggregazione stretta
+        
+        return temp;
     }
 
-    public void setCapoClasse(Studente capoClasse) throws Exception {
-        try {
-            int i = 0;
-            while (!(capoClasse.getCognome().isEmpty() && capoClasse.getCognome().isEmpty()) && i < studenti.length) {
-                if (capoClasse.getNome().equals(studenti[i].getNome())
-                        && studenti[i].getCognome().equals(studenti[i].getCognome())) {
-                    this.capoClasse = capoClasse;
-                }
-                i++;
-            }
-
-            if (this.capoClasse == null) {
-                throw new Exception("il capo classe non è presente nella classe");
-            }
-
-        } catch (Exception e) {
-            throw e;
-        }
+    public final void setCapoClasse(Studente capoClasse) {        
+        Studente temp = new Studente(capoClasse);
+        this.capoClasse = temp;       
     }
 
-    public void inveriAtt(int posizione) throws Exception {
-        try {
-            String cognome = studenti[posizione].getNome();
-            String nome = studenti[posizione].getCognome();
-            studenti[posizione].setCognome(cognome);
-            studenti[posizione].setNome(nome);
-        } catch (IndexOutOfBoundsException e) {
-            throw new IndexOutOfBoundsException("Posizione errata");
+    public Studente[] getStudenti() {
+        //return studenti; //aggregazione lasca
+        
+        //return studenti.clone(); non funziona perchè il metodo clone non è ridefinito
+        
+        //aggregazione stretta
+        Studente[] temp = new Studente[studenti.length];                            
+        
+        for (int i = 0; i < temp.length; i++) {
+            temp[i] = new Studente(studenti[i]); //attenzione qui! anche degli oggetti deve essere creata una nuova istanza
         }
+        
+        return temp;        
     }
 
-    public void ordinaStudenti() {
-        int n = studenti.length;
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
-                if (studenti[j].getCognome().compareTo(studenti[j + 1].getCognome()) > 0) {
-                    // Scambia arr[j] con arr[j+1]
-                    Studente temp = studenti[j];
-                    studenti[j] = studenti[j + 1];
-                    studenti[j + 1] = temp;
-                }
-            }
+    public final void setStudenti(Studente[] studenti) {
+        
+        //poichè si ripete la stessa operazione del metodo get potrebbe essere creato un metodo privato per la copia del vettore
+        Studente[] temp = new Studente[studenti.length];                            
+        
+        for (int i = 0; i < temp.length; i++) {
+            temp[i] = new Studente(studenti[i]);            
         }
+        
+        this.studenti = temp;
+    }
+    
+    public void invertiAttributi() throws Exception{
+        String tempCapoClasse;
+        String tempStudenti;
+        
+        tempCapoClasse = capoClasse.getCognome();
+        capoClasse.setCognome(capoClasse.getNome());
+        capoClasse.setNome(tempCapoClasse);
+        
+      //for (int i=0; i < studenti.length; i++){
+        for (Studente studenti1 : studenti) {
+            tempStudenti = studenti1.getCognome();
+            studenti1.setCognome(studenti1.getNome());
+            studenti1.setNome(tempStudenti);
+        }
+    }
+    
+    public void ordinaStudenti() throws Exception {        
+        Studente temp;
+        
+        for(int i=0; i<studenti.length-1; i++)                  
+            for(int j=i+1; j<studenti.length; j++)
+                if(studenti[i].getNome().charAt(0) > studenti[j].getNome().charAt(0)){
+                    temp = studenti[i];
+                    studenti[i] = studenti[j];
+                    studenti[j] = temp;
+                }           
     }
 
     @Override
     public String toString() {
-        String r = "capo Classe: " + capoClasse + "\n";
-        for (int i = 0; i < studenti.length; i++) {
-            r += "studenti[" + i + "]:" + studenti[i].toString() + "\n";
-        }
-        return r;
-    }
+        return capoClasse.toString() + "\n" + Arrays.toString(studenti) + "\n";
+    }        
 }
